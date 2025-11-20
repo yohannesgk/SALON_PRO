@@ -25,6 +25,10 @@ import Analytics from "./domains/salon/pages/Analytics";
 import { CustomerLayout } from "./domains/customer/layout/CustomerLayout";
 import CustomerDashboard from "./domains/customer/pages/Dashboard";
 
+// Stylist Domain
+import { StylistLayout } from "./domains/stylist/layout/StylistLayout";
+import StylistDashboard from "./domains/stylist/pages/Dashboard";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -42,17 +46,26 @@ const App = () => (
           <Route path="/auth/register" element={<Register />} />
           
           {/* Salon Admin Routes */}
-          <Route path="/salon/dashboard" element={<SalonLayout><SalonDashboard /></SalonLayout>} />
-          <Route path="/salon/appointments" element={<SalonLayout><Appointments /></SalonLayout>} />
-          <Route path="/salon/clients" element={<SalonLayout><Clients /></SalonLayout>} />
-          <Route path="/salon/staff" element={<SalonLayout><Staff /></SalonLayout>} />
-          <Route path="/salon/services" element={<SalonLayout><Services /></SalonLayout>} />
-          <Route path="/salon/inventory" element={<SalonLayout><Inventory /></SalonLayout>} />
-          <Route path="/salon/payments" element={<SalonLayout><Payments /></SalonLayout>} />
-          <Route path="/salon/analytics" element={<SalonLayout><Analytics /></SalonLayout>} />
+          <Route path="/salon" element={<SalonLayout />}>
+            <Route path="dashboard" element={<SalonDashboard />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="clients" element={<Clients />} />
+            <Route path="staff" element={<Staff />} />
+            <Route path="services" element={<Services />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="analytics" element={<Analytics />} />
+          </Route>
           
           {/* Customer Routes */}
-          <Route path="/customer/dashboard" element={<CustomerLayout><CustomerDashboard /></CustomerLayout>} />
+          <Route path="/customer" element={<CustomerLayout />}>
+            <Route path="dashboard" element={<CustomerDashboard />} />
+          </Route>
+          
+          {/* Stylist Routes */}
+          <Route path="/stylist" element={<StylistLayout />}>
+            <Route path="dashboard" element={<StylistDashboard />} />
+          </Route>
           
           {/* Fallback */}
           <Route path="*" element={<NotFound />} />

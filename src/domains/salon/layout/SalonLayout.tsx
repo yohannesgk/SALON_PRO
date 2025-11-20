@@ -1,26 +1,17 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "../components/AppSidebar";
 import { AppHeader } from "../components/AppHeader";
 
-interface SalonLayoutProps {
-  children: ReactNode;
-  user?: {
-    name: string;
-    email: string;
-    avatar?: string;
-  };
-}
-
-export const SalonLayout = ({ children, user }: SalonLayoutProps) => {
+export const SalonLayout = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-muted/30">
         <AppSidebar />
         <div className="flex-1 flex flex-col overflow-hidden">
-          <AppHeader user={user} />
+          <AppHeader />
           <main className="flex-1 overflow-y-auto p-6">
-            {children}
+            <Outlet />
           </main>
         </div>
       </div>
