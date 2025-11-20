@@ -13,22 +13,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
-interface CustomerHeaderProps {
-  user?: {
-    name: string;
-    email: string;
-    avatar?: string;
-  };
-}
-
-export const CustomerHeader = ({ user }: CustomerHeaderProps) => {
+export const CustomerHeader = () => {
   const defaultUser = {
     name: "Sarah Johnson",
     email: "sarah@client.com",
     avatar: "",
   };
-
-  const currentUser = user || defaultUser;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -63,23 +53,23 @@ export const CustomerHeader = ({ user }: CustomerHeaderProps) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 gap-2">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                  <AvatarImage src={defaultUser.avatar} alt={defaultUser.name} />
                   <AvatarFallback>
-                    {currentUser.name
+                    {defaultUser.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </AvatarFallback>
                 </Avatar>
-                <span className="hidden md:inline-block">{currentUser.name}</span>
+                <span className="hidden md:inline-block">{defaultUser.name}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{currentUser.name}</p>
+                  <p className="text-sm font-medium leading-none">{defaultUser.name}</p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    {currentUser.email}
+                    {defaultUser.email}
                   </p>
                 </div>
               </DropdownMenuLabel>

@@ -11,15 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-interface AppHeaderProps {
-  user?: {
-    name: string;
-    email: string;
-    avatar?: string;
+export const AppHeader = () => {
+  const user = {
+    name: "Salon Owner",
+    email: "owner@salon.com",
+    avatar: "",
   };
-}
 
-export const AppHeader = ({ user }: AppHeaderProps) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-6 gap-4">

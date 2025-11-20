@@ -26,22 +26,29 @@ const Login = () => {
     
     setTimeout(() => {
       // Mock role detection - in production this will come from backend
-      // For demo: emails ending with @client.com go to client dashboard
       const isClient = email.toLowerCase().includes("@client.com");
+      const isStylist = email.toLowerCase().includes("@stylist.com");
       
-      console.log("Is client?", isClient);
-      console.log("Redirecting to:", isClient ? "/customer/dashboard" : "/salon/dashboard");
+      let redirectPath = "/salon/dashboard"; // default to salon owner
+      let userType = "salon owner";
+      
+      if (isClient) {
+        redirectPath = "/customer/dashboard";
+        userType = "client";
+      } else if (isStylist) {
+        redirectPath = "/stylist/dashboard";
+        userType = "stylist";
+      }
+      
+      console.log("User type:", userType);
+      console.log("Redirecting to:", redirectPath);
       
       toast({
         title: "Welcome back!",
-        description: `You have successfully logged in as ${isClient ? "a client" : "salon owner"}.`,
+        description: `You have successfully logged in as ${userType}.`,
       });
       
-      if (isClient) {
-        navigate("/customer/dashboard");
-      } else {
-        navigate("/salon/dashboard");
-      }
+      navigate(redirectPath);
       setIsLoading(false);
     }, 1500);
   };
@@ -177,11 +184,14 @@ const Login = () => {
               </p>
               
               <div className="p-3 bg-primary/5 border border-primary/20 rounded-lg">
-                <p className="text-xs text-muted-foreground">
-                  <span className="font-semibold text-primary">💡 Demo Tip:</span> Use email with{" "}
-                  <code className="px-1.5 py-0.5 bg-primary/10 rounded text-xs font-mono">@client.com</code>{" "}
-                  to access client dashboard, or any other email for salon owner dashboard
+                <p className="text-xs text-muted-foreground mb-2">
+                  <span className="font-semibold text-primary">💡 Demo Tip - Role-based access:</span>
                 </p>
+                <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Client: email with <code className="px-1 py-0.5 bg-primary/10 rounded font-mono">@client.com</code></li>
+                  <li>Stylist: email with <code className="px-1 py-0.5 bg-primary/10 rounded font-mono">@stylist.com</code></li>
+                  <li>Salon Owner: any other email</li>
+                </ul>
               </div>
             </div>
           </CardContent>

@@ -1,21 +1,12 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import { CustomerHeader } from "../components/CustomerHeader";
 
-interface CustomerLayoutProps {
-  children: ReactNode;
-  user?: {
-    name: string;
-    email: string;
-    avatar?: string;
-  };
-}
-
-export const CustomerLayout = ({ children, user }: CustomerLayoutProps) => {
+export const CustomerLayout = () => {
   return (
     <div className="min-h-screen bg-muted/30">
-      <CustomerHeader user={user} />
+      <CustomerHeader />
       <main className="container mx-auto p-6">
-        {children}
+        <Outlet />
       </main>
     </div>
   );
