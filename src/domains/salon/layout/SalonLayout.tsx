@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "./AppSidebar";
-import { AppHeader } from "./AppHeader";
+import { AppSidebar } from "../components/AppSidebar";
+import { AppHeader } from "../components/AppHeader";
 
-interface DashboardLayoutProps {
+interface SalonLayoutProps {
   children: ReactNode;
   user?: {
     name: string;
@@ -12,7 +12,7 @@ interface DashboardLayoutProps {
   };
 }
 
-export const DashboardLayout = ({ children, user }: DashboardLayoutProps) => {
+export const SalonLayout = ({ children, user }: SalonLayoutProps) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-muted/30">

@@ -31,12 +31,12 @@ const Index = () => {
                 track inventory, and grow your business with SalonPro.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/register">
+                <Link to="/auth/register">
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-xl w-full sm:w-auto">
                     Start Free Trial
                   </Button>
                 </Link>
-                <Link to="/login">
+                <Link to="/auth/login">
                   <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
                     Sign In
                   </Button>
@@ -203,7 +203,7 @@ const Index = () => {
             Join hundreds of salon owners who are growing their business with SalonPro. 
             Start your free trial today - no credit card required.
           </p>
-          <Link to="/register">
+          <Link to="/auth/register">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-xl">
               Get Started Free
             </Button>

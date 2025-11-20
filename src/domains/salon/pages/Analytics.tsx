@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StatCard } from "@/components/ui/stat-card";
@@ -68,14 +68,7 @@ const clientRetentionData = [
 
 const Analytics = () => {
   return (
-    <DashboardLayout
-      user={{
-        name: "John Doe",
-        email: "john@salonpro.com",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
-      }}
-    >
-      <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
         <div>
           <h1 className="text-3xl font-bold text-foreground mb-2">Analytics Dashboard</h1>
           <p className="text-muted-foreground">
@@ -390,9 +383,8 @@ const Analytics = () => {
               </Card>
             </div>
           </TabsContent>
-        </Tabs>
-      </div>
-    </DashboardLayout>
+      </Tabs>
+    </div>
   );
 };
 

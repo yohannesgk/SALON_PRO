@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -144,9 +144,8 @@ const mockLoyaltyData = {
 
 const ClientDashboard = () => {
   return (
-    <DashboardLayout user={mockClientUser}>
-      <div className="space-y-6 animate-fade-in">
-        {/* Welcome Section */}
+    <div className="space-y-6 animate-fade-in">
+      {/* Welcome Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">
@@ -497,9 +496,8 @@ const ClientDashboard = () => {
               </Button>
             </CardContent>
           </Card>
-        </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 

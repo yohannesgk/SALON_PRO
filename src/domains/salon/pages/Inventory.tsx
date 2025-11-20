@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -78,9 +78,8 @@ const Inventory = () => {
   const totalValue = mockInventory.reduce((acc, item) => acc + (item.quantity * item.unitPrice), 0);
 
   return (
-    <DashboardLayout>
-      <div className="space-y-6">
-        {/* Page Header */}
+    <div className="space-y-6">
+      {/* Page Header */}
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Inventory Management</h1>
@@ -222,9 +221,8 @@ const Inventory = () => {
               ))}
             </div>
           </CardContent>
-        </Card>
-      </div>
-    </DashboardLayout>
+      </Card>
+    </div>
   );
 };
 

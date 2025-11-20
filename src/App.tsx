@@ -5,17 +5,25 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import ClientDashboard from "./pages/ClientDashboard";
-import Appointments from "./pages/Appointments";
-import Services from "./pages/Services";
-import Staff from "./pages/Staff";
-import Clients from "./pages/Clients";
-import Inventory from "./pages/Inventory";
-import Payments from "./pages/Payments";
-import Analytics from "./pages/Analytics";
+
+// Auth Domain
+import Login from "./domains/auth/pages/Login";
+import Register from "./domains/auth/pages/Register";
+
+// Salon Domain
+import { SalonLayout } from "./domains/salon/layout/SalonLayout";
+import SalonDashboard from "./domains/salon/pages/Dashboard";
+import Appointments from "./domains/salon/pages/Appointments";
+import Clients from "./domains/salon/pages/Clients";
+import Staff from "./domains/salon/pages/Staff";
+import Services from "./domains/salon/pages/Services";
+import Inventory from "./domains/salon/pages/Inventory";
+import Payments from "./domains/salon/pages/Payments";
+import Analytics from "./domains/salon/pages/Analytics";
+
+// Customer Domain
+import { CustomerLayout } from "./domains/customer/layout/CustomerLayout";
+import CustomerDashboard from "./domains/customer/pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -26,19 +34,27 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/client-dashboard" element={<ClientDashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/staff" element={<Staff />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/payments" element={<Payments />} />
-          <Route path="/analytics" element={<Analytics />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* Auth Routes */}
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+          
+          {/* Salon Admin Routes */}
+          <Route path="/salon/dashboard" element={<SalonLayout><SalonDashboard /></SalonLayout>} />
+          <Route path="/salon/appointments" element={<SalonLayout><Appointments /></SalonLayout>} />
+          <Route path="/salon/clients" element={<SalonLayout><Clients /></SalonLayout>} />
+          <Route path="/salon/staff" element={<SalonLayout><Staff /></SalonLayout>} />
+          <Route path="/salon/services" element={<SalonLayout><Services /></SalonLayout>} />
+          <Route path="/salon/inventory" element={<SalonLayout><Inventory /></SalonLayout>} />
+          <Route path="/salon/payments" element={<SalonLayout><Payments /></SalonLayout>} />
+          <Route path="/salon/analytics" element={<SalonLayout><Analytics /></SalonLayout>} />
+          
+          {/* Customer Routes */}
+          <Route path="/customer/dashboard" element={<CustomerLayout><CustomerDashboard /></CustomerLayout>} />
+          
+          {/* Fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

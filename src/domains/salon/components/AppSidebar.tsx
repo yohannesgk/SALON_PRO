@@ -25,19 +25,19 @@ import {
 } from "@/components/ui/sidebar";
 
 const menuItems = [
-  { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Appointments", url: "/appointments", icon: Calendar },
-  { title: "Clients", url: "/clients", icon: Users },
-  { title: "Staff", url: "/staff", icon: Users },
-  { title: "Services", url: "/services", icon: Scissors },
-  { title: "Inventory", url: "/inventory", icon: Package },
-  { title: "Payments", url: "/payments", icon: CreditCard },
-  { title: "Analytics", url: "/analytics", icon: BarChart3 },
+  { title: "Dashboard", url: "/salon/dashboard", icon: Home },
+  { title: "Appointments", url: "/salon/appointments", icon: Calendar },
+  { title: "Clients", url: "/salon/clients", icon: Users },
+  { title: "Staff", url: "/salon/staff", icon: Users },
+  { title: "Services", url: "/salon/services", icon: Scissors },
+  { title: "Inventory", url: "/salon/inventory", icon: Package },
+  { title: "Payments", url: "/salon/payments", icon: CreditCard },
+  { title: "Analytics", url: "/salon/analytics", icon: BarChart3 },
 ];
 
 const settingsItems = [
-  { title: "Branches", url: "/branches", icon: Building2 },
-  { title: "Settings", url: "/settings", icon: Settings },
+  { title: "Branches", url: "/salon/branches", icon: Building2 },
+  { title: "Settings", url: "/salon/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
