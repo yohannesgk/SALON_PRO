@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -159,11 +158,11 @@ const Clients = () => {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Clients</h1>
-            <p className="text-muted-foreground mt-1">Manage your client relationships and history</p>
-          </div>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Clients</h1>
+          <p className="text-muted-foreground mt-1">Manage your client relationships and history</p>
+        </div>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
               <Button className="bg-gradient-primary hover:opacity-90 transition-base">
@@ -435,7 +434,6 @@ const Clients = () => {
             </Card>
           </div>
         </div>
-      </div>
     </div>
   );
 };

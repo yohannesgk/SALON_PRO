@@ -1,5 +1,4 @@
 import { StatCard } from "@/components/ui/stat-card";
-import { StatCard } from "@/components/ui/stat-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   DollarSign, 
