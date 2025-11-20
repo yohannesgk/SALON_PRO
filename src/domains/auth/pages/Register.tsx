@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Scissors, Mail, Lock, User, Phone, Building2, Sparkles, CheckCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Scissors, Mail, Lock, User, Phone, Building, Sparkles } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 
 const Register = () => {
-  const [activeTab, setActiveTab] = useState<string>("salon");
+  const [activeTab, setActiveTab] = useState("salon");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -19,13 +19,13 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // TODO: Integrate with backend
+    // TODO: Integrate with backend authentication
     setTimeout(() => {
       toast({
-        title: "Account created successfully!",
-        description: "Welcome to SalonPro. Let's set up your salon.",
+        title: "Registration Successful!",
+        description: "Your salon account has been created. Welcome aboard!",
       });
-      navigate("/dashboard");
+      navigate("/salon/dashboard");
       setIsLoading(false);
     }, 1500);
   };
@@ -34,20 +34,18 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // TODO: Integrate with backend
+    // TODO: Integrate with backend authentication
     setTimeout(() => {
       toast({
-        title: "Account created successfully!",
-        description: "Welcome to SalonPro. Start booking appointments now.",
+        title: "Registration Successful!",
+        description: "Your client account has been created. Start booking now!",
       });
-      // Clients go to client dashboard
-      navigate("/client-dashboard");
+      navigate("/customer/dashboard");
       setIsLoading(false);
     }, 1500);
   };
 
   const handleGoogleSignup = () => {
-    // TODO: Integrate with Google OAuth
     toast({
       title: "Google Sign-Up",
       description: "Google authentication will be integrated with backend.",
@@ -55,76 +53,78 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-hero p-4 relative overflow-hidden py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-hero p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
       </div>
 
-      <div className="w-full max-w-2xl relative z-10">
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8 animate-in fade-in slide-in-from-top duration-700">
           <div className="inline-flex w-20 h-20 rounded-3xl bg-white shadow-glow items-center justify-center mb-4 relative">
             <Scissors className="w-10 h-10 text-primary" />
             <Sparkles className="w-4 h-4 text-gold absolute -top-1 -right-1 animate-pulse" />
           </div>
-          <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">Join SalonPro</h1>
-          <p className="text-white/90 text-lg">Start managing your salon or book appointments</p>
-          
-          {/* Benefits */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
-            {["Free 14-day trial", "No credit card required", "Cancel anytime"].map((benefit) => (
-              <div key={benefit} className="flex items-center gap-1 text-white/80 text-sm">
-                <CheckCircle className="w-4 h-4 text-success" />
-                <span>{benefit}</span>
-              </div>
-            ))}
-          </div>
+          <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">SalonPro</h1>
+          <p className="text-white/90 text-lg">Join the Professional Network</p>
         </div>
 
         <Card className="border-none shadow-2xl backdrop-blur-sm bg-white/95 animate-in fade-in slide-in-from-bottom duration-700">
-          <CardHeader className="space-y-1 pb-4">
+          <CardHeader className="space-y-1 pb-6">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Create Account
             </CardTitle>
             <CardDescription className="text-base">Choose your account type to get started</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-2 mb-6 h-12">
-                <TabsTrigger value="salon" className="text-base">🏪 Salon Owner</TabsTrigger>
-                <TabsTrigger value="client" className="text-base">👤 Client</TabsTrigger>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger value="salon">Salon Owner</TabsTrigger>
+                <TabsTrigger value="client">Client</TabsTrigger>
               </TabsList>
 
               <TabsContent value="salon">
                 <form onSubmit={handleSalonRegister} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="salon-name">Salon Name</Label>
-                      <div className="relative">
-                        <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                          id="salon-name"
-                          placeholder="Glamour Salon & Spa"
-                          className="pl-10"
-                          required
-                        />
-                      </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="salon-name">Salon Name</Label>
+                    <div className="relative">
+                      <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        id="salon-name"
+                        type="text"
+                        placeholder="Your Salon Name"
+                        className="pl-10"
+                        required
+                      />
                     </div>
+                  </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="salon-phone">Phone Number</Label>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                          id="salon-phone"
-                          type="tel"
-                          placeholder="+251 912 345 678"
-                          className="pl-10"
-                          required
-                        />
-                      </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="salon-owner">Owner Name</Label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        id="salon-owner"
+                        type="text"
+                        placeholder="John Doe"
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="salon-phone">Phone Number</Label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        id="salon-phone"
+                        type="tel"
+                        placeholder="+251 912 345 678"
+                        className="pl-10"
+                        required
+                      />
                     </div>
                   </div>
 
@@ -135,7 +135,7 @@ const Register = () => {
                       <Input
                         id="salon-email"
                         type="email"
-                        placeholder="owner@glamoursalon.com"
+                        placeholder="salon@example.com"
                         className="pl-10"
                         required
                       />
@@ -158,7 +158,7 @@ const Register = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-primary hover:opacity-90 transition-base text-lg h-12 font-semibold shadow-lg hover:shadow-xl"
+                    className="w-full bg-gradient-primary hover:opacity-90 transition-base text-lg h-12 font-semibold shadow-lg hover:shadow-xl mt-6"
                     disabled={isLoading}
                   >
                     {isLoading ? "Creating Account..." : "Create Salon Account"}
@@ -168,31 +168,24 @@ const Register = () => {
 
               <TabsContent value="client">
                 <form onSubmit={handleClientRegister} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="client-fname">First Name</Label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                          id="client-fname"
-                          placeholder="Emma"
-                          className="pl-10"
-                          required
-                        />
-                      </div>
+                      <Label htmlFor="client-firstname">First Name</Label>
+                      <Input
+                        id="client-firstname"
+                        type="text"
+                        placeholder="John"
+                        required
+                      />
                     </div>
-
                     <div className="space-y-2">
-                      <Label htmlFor="client-lname">Last Name</Label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                          id="client-lname"
-                          placeholder="Wilson"
-                          className="pl-10"
-                          required
-                        />
-                      </div>
+                      <Label htmlFor="client-lastname">Last Name</Label>
+                      <Input
+                        id="client-lastname"
+                        type="text"
+                        placeholder="Doe"
+                        required
+                      />
                     </div>
                   </div>
 
@@ -203,7 +196,7 @@ const Register = () => {
                       <Input
                         id="client-email"
                         type="email"
-                        placeholder="emma@example.com"
+                        placeholder="you@example.com"
                         className="pl-10"
                         required
                       />
@@ -240,7 +233,7 @@ const Register = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-primary hover:opacity-90 transition-base text-lg h-12 font-semibold shadow-lg hover:shadow-xl"
+                    className="w-full bg-gradient-primary hover:opacity-90 transition-base text-lg h-12 font-semibold shadow-lg hover:shadow-xl mt-6"
                     disabled={isLoading}
                   >
                     {isLoading ? "Creating Account..." : "Create Client Account"}
@@ -286,7 +279,7 @@ const Register = () => {
             <div className="text-center mt-6">
               <p className="text-sm text-muted-foreground">
                 Already have an account?{" "}
-                <Link to="/login" className="text-primary font-semibold hover:underline transition-colors">
+                <Link to="/auth/login" className="text-primary font-semibold hover:underline transition-colors">
                   Sign in
                 </Link>
               </p>
@@ -294,14 +287,10 @@ const Register = () => {
           </CardContent>
         </Card>
 
-        <div className="text-center mt-6 space-y-2">
+        <div className="text-center mt-6">
           <p className="text-xs text-white/70">
-            By creating an account, you agree to our Terms of Service and Privacy Policy
+            By continuing, you agree to our Terms of Service and Privacy Policy
           </p>
-          <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
-            <Sparkles className="w-4 h-4" />
-            <span>Join 1000+ salons growing with SalonPro</span>
-          </div>
         </div>
       </div>
     </div>

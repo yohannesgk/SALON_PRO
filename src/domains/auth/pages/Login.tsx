@@ -30,7 +30,7 @@ const Login = () => {
       const isClient = email.toLowerCase().includes("@client.com");
       
       console.log("Is client?", isClient);
-      console.log("Redirecting to:", isClient ? "/client-dashboard" : "/dashboard");
+      console.log("Redirecting to:", isClient ? "/customer/dashboard" : "/salon/dashboard");
       
       toast({
         title: "Welcome back!",
@@ -38,9 +38,9 @@ const Login = () => {
       });
       
       if (isClient) {
-        navigate("/client-dashboard");
+        navigate("/customer/dashboard");
       } else {
-        navigate("/dashboard");
+        navigate("/salon/dashboard");
       }
       setIsLoading(false);
     }, 1500);
@@ -100,7 +100,7 @@ const Login = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  <Link to="/forgot-password" className="text-xs text-primary hover:underline">
+                  <Link to="/auth/forgot-password" className="text-xs text-primary hover:underline">
                     Forgot password?
                   </Link>
                 </div>
@@ -171,7 +171,7 @@ const Login = () => {
             <div className="text-center mt-6 space-y-3">
               <p className="text-sm text-muted-foreground">
                 Don't have an account?{" "}
-                <Link to="/register" className="text-primary font-semibold hover:underline transition-colors">
+                <Link to="/auth/register" className="text-primary font-semibold hover:underline transition-colors">
                   Sign up for free
                 </Link>
               </p>

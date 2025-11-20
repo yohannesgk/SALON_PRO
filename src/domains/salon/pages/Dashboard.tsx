@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { StatCard } from "@/components/ui/stat-card";
 import { StatCard } from "@/components/ui/stat-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -71,9 +71,8 @@ const mockUpcomingAppointments = [
 
 const Dashboard = () => {
   return (
-    <DashboardLayout user={mockUser}>
-      <div className="space-y-6">
-        {/* Page Header */}
+    <div className="space-y-6">
+      {/* Page Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
           <p className="text-muted-foreground mt-1">Welcome back! Here's what's happening today.</p>
@@ -214,9 +213,8 @@ const Dashboard = () => {
               </Button>
             </CardContent>
           </Card>
-        </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 
